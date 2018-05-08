@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2018 7:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Informacion.Factura" table="factura" catalog="manageit" optimistic-lock="version">
+        <id name="idfactura" type="int">
+            <column name="idfactura" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="empleado" class="Informacion.Empleado" fetch="select">
+            <column name="idempleado" />
+        </many-to-one>
+        <property name="nit" type="string">
+            <column name="nit" length="20" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <one-to-one name="detallefactura" class="Informacion.Detallefactura"></one-to-one>
+    </class>
+</hibernate-mapping>

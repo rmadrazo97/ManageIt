@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2018 7:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Informacion.Detallefactura" table="detallefactura" catalog="manageit" optimistic-lock="version">
+        <id name="idfactura" type="int">
+            <column name="idfactura" />
+            <generator class="foreign">
+                <param name="property">factura</param>
+            </generator>
+        </id>
+        <many-to-one name="articulo" class="Informacion.Articulo" fetch="select">
+            <column name="idarticulo" length="45" />
+        </many-to-one>
+        <one-to-one name="factura" class="Informacion.Factura" constrained="true"></one-to-one>
+        <property name="cantidad" type="big_decimal">
+            <column name="cantidad" precision="20" scale="4" />
+        </property>
+    </class>
+</hibernate-mapping>

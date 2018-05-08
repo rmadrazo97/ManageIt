@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2018 7:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Informacion.Empleado" table="empleado" catalog="manageit" optimistic-lock="version">
+        <id name="idempleado" type="java.lang.Integer">
+            <column name="idempleado" />
+            <generator class="identity" />
+        </id>
+        <property name="dpi" type="string">
+            <column name="dpi" length="45" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="45" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempleado" />
+            </key>
+            <one-to-many class="Informacion.Factura" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempleado" not-null="true" />
+            </key>
+            <one-to-many class="Informacion.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>
