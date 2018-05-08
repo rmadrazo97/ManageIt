@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2018 7:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Informacion.Articulo" table="articulo" catalog="manageit" optimistic-lock="version">
+        <id name="idarticulo" type="string">
+            <column name="idarticulo" length="45" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="proveedor" class="Informacion.Proveedor" fetch="select">
+            <column name="idproveedor" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <property name="precio" type="big_decimal">
+            <column name="precio" precision="10" />
+        </property>
+        <property name="costo" type="big_decimal">
+            <column name="costo" precision="10" />
+        </property>
+        <set name="detallefacturas" table="detallefactura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idarticulo" length="45" />
+            </key>
+            <one-to-many class="Informacion.Detallefactura" />
+        </set>
+        <set name="inventarios" table="inventario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idarticulo" length="45" not-null="true" />
+            </key>
+            <one-to-many class="Informacion.Inventario" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 7, 2018 7:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Informacion.Clientes" table="clientes" catalog="manageit" optimistic-lock="version">
+        <composite-id name="id" class="Informacion.ClientesId">
+            <key-property name="nombre" type="string">
+                <column name="nombre" length="200" />
+            </key-property>
+            <key-property name="nit" type="string">
+                <column name="nit" length="20" />
+            </key-property>
+        </composite-id>
+        <property name="direccion" type="string">
+            <column name="direccion" length="200" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="200" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="200" />
+        </property>
+        <property name="contacto" type="string">
+            <column name="contacto" length="200" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="200" />
+        </property>
+        <property name="obs" type="string">
+            <column name="obs" length="200" />
+        </property>
+        <property name="terminos" type="java.lang.Integer">
+            <column name="terminos" />
+        </property>
+        <property name="limite" type="big_decimal">
+            <column name="limite" precision="20" scale="4" />
+        </property>
+    </class>
+</hibernate-mapping>
