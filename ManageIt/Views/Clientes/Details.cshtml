@@ -1,0 +1,82 @@
+﻿@model ManageIt.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoPrincipal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoPrincipal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoSecundario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoSecundario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.credito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.credito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diasDeCredito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diasDeCredito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contacto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.nit }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ManageitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bodega">
+    <Key>
+      <PropertyRef Name="idPuntoDeVenta" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idPuntoDeVenta" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Bodega__idProduc__46E78A0C" FromRole="Bodega" ToRole="Producto" />
+    <NavigationProperty Name="PuntoDeVenta" Relationship="Self.FK__Bodega__idPuntoD__45F365D3" FromRole="Bodega" ToRole="PuntoDeVenta" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="nit" />
+    </Key>
+    <Property Name="nit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefonoPrincipal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefonoSecundario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="credito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="diasDeCredito" Type="Int32" Nullable="false" />
+    <Property Name="contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Documento" Relationship="Self.FK__Documento__nit__5812160E" FromRole="Cliente" ToRole="Documento" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__nit__4D94879B" FromRole="Cliente" ToRole="Factura" />
+  </EntityType>
+  <EntityType Name="DetalleDocumento">
+    <Key>
+      <PropertyRef Name="idDocumento" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idDocumento" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleDo__idPro__5BE2A6F2" FromRole="DetalleDocumento" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetalleFactura">
+    <Key>
+      <PropertyRef Name="serie" />
+      <PropertyRef Name="numero" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="serie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleFa__idPro__5165187F" FromRole="DetalleFactura" ToRole="Producto" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK__DetalleFactura__52593CB8" FromRole="DetalleFactura" ToRole="Factura" />
+  </EntityType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="idDocumento" />
+    </Key>
+    <Property Name="idDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoDocumento" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="contactoReceptor" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Documento__nit__5812160E" FromRole="Documento" ToRole="Cliente" />
+    <NavigationProperty Name="TipoDocumento" Relationship="Self.FK__Documento__idTip__571DF1D5" FromRole="Documento" ToRole="TipoDocumento" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Documento__usern__59063A47" FromRole="Documento" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="documento" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nodocto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="comision" Type="Decimal" Precision="5" Scale="3" />
+    <Property Name="telefonocelular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefonoresidencia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefonoextra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechanacimiento" Type="DateTime" Precision="0" />
+    <Property Name="idTipo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoEmpleado" Relationship="Self.FK__Empleado__idTipo__3B75D760" FromRole="Empleado" ToRole="TipoEmpleado" />
+    <NavigationProperty Name="PuntoDeVenta" Relationship="Self.FK__PuntoDeVe__idEmp__4316F928" FromRole="Empleado" ToRole="PuntoDeVenta" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__idEmple__3F466844" FromRole="Empleado" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="serie" />
+      <PropertyRef Name="numero" />
+    </Key>
+    <Property Name="serie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Factura__nit__4D94879B" FromRole="Factura" ToRole="Cliente" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFactura__52593CB8" FromRole="Factura" ToRole="DetalleFactura" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Factura__usernam__4E88ABD4" FromRole="Factura" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="descuento" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="Bodega" Relationship="Self.FK__Bodega__idProduc__46E78A0C" FromRole="Producto" ToRole="Bodega" />
+    <NavigationProperty Name="DetalleDocumento" Relationship="Self.FK__DetalleDo__idPro__5BE2A6F2" FromRole="Producto" ToRole="DetalleDocumento" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK__DetalleFa__idPro__5165187F" FromRole="Producto" ToRole="DetalleFactura" />
+  </EntityType>
+  <EntityType Name="PuntoDeVenta">
+    <Key>
+      <PropertyRef Name="idPuntoDeVenta" />
+    </Key>
+    <Property Name="idPuntoDeVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="capacidad" Type="Int32" Nullable="false" />
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bodega" Relationship="Self.FK__Bodega__idPuntoD__45F365D3" FromRole="PuntoDeVenta" ToRole="Bodega" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__PuntoDeVe__idEmp__4316F928" FromRole="PuntoDeVenta" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="TipoDocumento">
+    <Key>
+      <PropertyRef Name="idTipoDocumento" />
+    </Key>
+    <Property Name="idTipoDocumento" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Documento" Relationship="Self.FK__Documento__idTip__571DF1D5" FromRole="TipoDocumento" ToRole="Documento" />
+  </EntityType>
+  <EntityType Name="TipoEmpleado">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__idTipo__3B75D760" FromRole="TipoEmpleado" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Documento" Relationship="Self.FK__Documento__usern__59063A47" FromRole="Usuario" ToRole="Documento" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Usuario__idEmple__3F466844" FromRole="Usuario" ToRole="Empleado" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__usernam__4E88ABD4" FromRole="Usuario" ToRole="Factura" />
+  </EntityType>
+  <Association Name="FK__Bodega__idProduc__46E78A0C">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Bodega">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bodega__idPuntoD__45F365D3">
+    <End Role="PuntoDeVenta" Type="Self.PuntoDeVenta" Multiplicity="1" />
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PuntoDeVenta">
+        <PropertyRef Name="idPuntoDeVenta" />
+      </Principal>
+      <Dependent Role="Bodega">
+        <PropertyRef Name="idPuntoDeVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__nit__5812160E">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="nit" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="nit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Factura__nit__4D94879B">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="nit" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="nit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleDo__idPro__5BE2A6F2">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetalleDocumento" Type="Self.DetalleDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="DetalleDocumento">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFa__idPro__5165187F">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleFactura__52593CB8">
+    <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="serie" />
+        <PropertyRef Name="numero" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="serie" />
+        <PropertyRef Name="numero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__idTip__571DF1D5">
+    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDocumento">
+        <PropertyRef Name="idTipoDocumento" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="idTipoDocumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__usern__59063A47">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__idTipo__3B75D760">
+    <End Role="TipoEmpleado" Type="Self.TipoEmpleado" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEmpleado">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PuntoDeVe__idEmp__4316F928">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="PuntoDeVenta" Type="Self.PuntoDeVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idEmpleado" />
+      </Principal>
+      <Dependent Role="PuntoDeVenta">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__idEmple__3F466844">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idEmpleado" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Factura__usernam__4E88ABD4">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ManageitEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bodega" EntityType="Self.Bodega" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="DetalleDocumento" EntityType="Self.DetalleDocumento" />
+    <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+    <EntitySet Name="Documento" EntityType="Self.Documento" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="Factura" EntityType="Self.Factura" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="PuntoDeVenta" EntityType="Self.PuntoDeVenta" />
+    <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
+    <EntitySet Name="TipoEmpleado" EntityType="Self.TipoEmpleado" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Bodega__idProduc__46E78A0C" Association="Self.FK__Bodega__idProduc__46E78A0C">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Bodega" EntitySet="Bodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bodega__idPuntoD__45F365D3" Association="Self.FK__Bodega__idPuntoD__45F365D3">
+      <End Role="PuntoDeVenta" EntitySet="PuntoDeVenta" />
+      <End Role="Bodega" EntitySet="Bodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__nit__5812160E" Association="Self.FK__Documento__nit__5812160E">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Factura__nit__4D94879B" Association="Self.FK__Factura__nit__4D94879B">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleDo__idPro__5BE2A6F2" Association="Self.FK__DetalleDo__idPro__5BE2A6F2">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleDocumento" EntitySet="DetalleDocumento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFa__idPro__5165187F" Association="Self.FK__DetalleFa__idPro__5165187F">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleFactura__52593CB8" Association="Self.FK__DetalleFactura__52593CB8">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__idTip__571DF1D5" Association="Self.FK__Documento__idTip__571DF1D5">
+      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__usern__59063A47" Association="Self.FK__Documento__usern__59063A47">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__idTipo__3B75D760" Association="Self.FK__Empleado__idTipo__3B75D760">
+      <End Role="TipoEmpleado" EntitySet="TipoEmpleado" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PuntoDeVe__idEmp__4316F928" Association="Self.FK__PuntoDeVe__idEmp__4316F928">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PuntoDeVenta" EntitySet="PuntoDeVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__idEmple__3F466844" Association="Self.FK__Usuario__idEmple__3F466844">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Factura__usernam__4E88ABD4" Association="Self.FK__Factura__usernam__4E88ABD4">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
