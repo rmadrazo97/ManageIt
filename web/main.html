@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
     <head>
-        <title>The Materialize Example</title>
+        <title>Main Example ManageIt</title>
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">      
         <link rel = "stylesheet"
          href = "https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -11,6 +11,9 @@
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
         </script>  
+        <style>
+            html{font-family: 'Montserrat', sans-serif;}
+        </style>
     </head>
 
     <body class = "container">
@@ -29,6 +32,79 @@
                 <div class = "card-panel red lighten-1"><p class = "center-align">Center Aligned Card Panel 2.1</p></div>
                 <div class = "card-panel green lighten-2"> No alignment Card Panel 2.2</div>
         </div>
+        
+        <div>
+        <table class = "responsive-table green lighten-3">
+         <thead>
+            <tr>
+               <th>Developers</th>
+               <th>Age</th>
+               <th>Whatsapp</th>
+               <th>Email</th>
+               
+
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Alejandro Madrazo</td>
+               <td>20</td>
+               <td>+502 35230129</td>
+               <td>jmadrazo7@gmai.com</td>
+              
+
+            </tr>
+            
+            <tr>
+               <td>Juan Diego Sique</td>
+               <td>20</td>
+               <td>+502 000000</td>
+               <td>....@gmail.com</td>
+              
+
+            </tr>
+            
+            <tr>
+               <td>Jose Gúzman</td>
+               <td>18</td>
+               <td>+502 0000000</td>
+               <td>....@gmail.com</td>
+            
+
+            </tr>
+          </tbody>
+       </table>
+        </div>
+        
+        <div class = "card-panel blue lighten-3">
+         <blockquote>
+            ManageIt it's a small-medium business administration tool. 
+         </blockquote>
+        </div>
+        
+        <h3>Documents</h3>
+        <div class = "collection">
+            <a href = "#" class = "collection-item">Inbox<span class = "badge">12</span></a>
+            <a href = "#" class = "collection-item">Invoices<span class = "new badge">4</span></a>
+            <a href = "#" class = "collection-item">Tasks</a>
+            <a href = "#" class = "collection-item">Payments<span class = "badge">14</span></a>
+            <a href = "#" class = "collection-item">Pack<span class = "badge">7</span></a>
+            <a href = "#" class = "collection-item">Devliver<span class = "badge">3</span></a>
+        </div>
+        
+        <a class = "btn dropdown-button" href = "#" data-activates = "dropdown">
+         Dropdown<i class = "mdi-navigation-arrow-drop-down right"></i></a>
+        
+        
+        <h3>Actions</h3>
+        <ul id = "dropdown" class = "dropdown-content">
+         <li><a href = "#">Call></a></li>
+         <li><a href = "#!">Message</a></li>
+         <li><a href = "#">Invoice</a></li>
+         <li><a href = "#">Payment</a></li>
+        </ul>
+        
+        
         
       <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="js/materialize.min.js"></script>
